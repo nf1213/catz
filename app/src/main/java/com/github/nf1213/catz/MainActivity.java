@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         cats = (ListView) findViewById(R.id.cats);
         RealmResults<Cat> catResults = realm.where(Cat.class).findAll();
         cats.setAdapter(new CatAdapter(this, catResults, true ));
+        cats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cat cat = (Cat) view.getTag(R.id.cats);
+                Intent intent = new Intent(view.getContext(), CatViewActivity.class);
+                intent.putExtra(CatViewActivity.CAT_ID, cat.getId());
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (cat.getGender() == 2) {
                 convertView.setBackgroundColor(getResources().getColor(R.color.colorPink));
             }
+            convertView.setTag(R.id.cats, cat);
             return convertView;
         }
 

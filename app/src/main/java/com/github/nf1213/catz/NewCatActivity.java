@@ -54,6 +54,7 @@ public class NewCatActivity extends AppCompatActivity implements AdapterView.OnI
                     Realm realm = Realm.getInstance(v.getContext());
                     realm.beginTransaction();
                     Cat cat = realm.createObject(Cat.class);
+                    cat.setId(RealmUtil.getId(v.getContext(), Cat.class));
                     cat.setName(nameVal);
                     cat.setGender(genderVal);
                     cat.setDescription(descriptionVal);
