@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Catz</string>
+    <string name="name_error">Please provide a name</string>
+
+    <string-array name="genders">
+        <item>None</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="gender_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>
